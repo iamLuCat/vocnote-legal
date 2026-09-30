@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VocNote — TikTok connected</title>
+<style>
+  :root { color-scheme: light; }
+  body {
+    margin: 0 auto; max-width: 760px; padding: 40px 20px 80px;
+    font: 16px/1.65 -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: #201F1D; background: #FBF6F1;
+  }
+  h1 { font-size: 1.9rem; margin: 0 0 4px; }
+  h2 { font-size: 1.2rem; margin: 34px 0 8px; }
+  .updated { color: #7a726b; margin: 0 0 28px; }
+  a { color: #A3441E; }
+  ul { padding-left: 20px; }
+  li { margin: 6px 0; }
+  code { background: #efe6dd; padding: 1px 5px; border-radius: 5px; }
+  footer { margin-top: 40px; color: #7a726b; font-size: 0.9rem; }
+</style>
+<meta name="robots" content="noindex">
+<meta name="referrer" content="no-referrer">
+</head>
+<body>
+
+<h1>TikTok connected</h1>
+<p class="updated">VocNote publishing tool</p>
+
+<p>TikTok has sent you back with a one-time authorization code. Copy the full
+address below and paste it into the terminal where <code>npm run oauth -- tiktok</code>
+is waiting. This page does not send the code anywhere.</p>
+
+<p><textarea id="url" readonly rows="4" style="width:100%;font:14px monospace;padding:8px;border-radius:8px;border:1px solid #d8cbbf"></textarea></p>
+<p><button id="copy" style="font:inherit;padding:8px 16px;border-radius:10px;border:0;background:#A3441E;color:#fff;cursor:pointer">Copy address</button>
+  <span id="done" style="margin-left:8px;color:#3D6751"></span></p>
+<p id="error" style="color:#BA1A1A"></p>
+
+<footer>VocNote · <a href="./">Privacy Policy</a> · <a href="terms.html">Terms of Service</a></footer>
+
+<script>
+  // Everything stays in this page: the address is only shown and copied.
+  var box = document.getElementById('url');
+  box.value = location.href;
+  var q = new URLSearchParams(location.search);
+  if (q.get('error')) document.getElementById('error').textContent = 'TikTok returned an error: ' + q.get('error') + ' ' + (q.get('error_description') || '');
+  document.getElementById('copy').addEventListener('click', function () {
+    box.select();
+    (navigator.clipboard ? navigator.clipboard.writeText(box.value) : Promise.reject()).catch(function () { document.execCommand('copy'); });
+    document.getElementById('done').textContent = 'Copied';
+  });
+</script>
+
+</body>
+</html>
