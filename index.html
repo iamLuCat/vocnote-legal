@@ -24,9 +24,9 @@
 <body>
 
 <h1>Privacy Policy for VocNote</h1>
-<p class="updated">Last updated: September 5, 2026</p>
+<p class="updated">Last updated: September 30, 2026</p>
 
-<p>VocNote (“the app”, “we”, “us”) is an English-vocabulary notebook. This policy
+<p>VocNote (“the app”, “we”, “us”) is a vocabulary notebook for iPhone, iPad, Mac and Android. This policy
 explains what data the app handles, why, and the choices you have. We designed
 VocNote to keep your notebook on your device by default and to collect as little
 as possible.</p>
@@ -40,15 +40,48 @@ export and import your data yourself at any time (JSON/CSV).</p>
 
 <h2>2. Account information</h2>
 <p>If you choose to use VocNote Cloud, we create an account using
-<strong>Firebase Authentication</strong> (by Google). We store your email
-address, an optional display name, and a unique account identifier so you can
-sign in and sync across your devices. Using an account is entirely optional — the
+<strong>Firebase Authentication</strong> (by Google). You can sign up with an
+email and password, <strong>Sign in with Apple</strong> or <strong>Sign in with
+Google</strong>. We store your email address, an optional display name, an
+optional profile photo, and a unique account identifier so you can sign in and
+sync across your devices. If you use Sign in with Apple with “Hide My Email”, we
+only receive Apple’s relay address. Using an account is entirely optional — the
 app is fully usable without one.</p>
 
 <h2>3. Cloud sync data</h2>
 <p>When cloud sync is enabled, your vocabulary content and learning progress are
 stored in <strong>Firebase Cloud Firestore</strong> so they can sync between your
-devices. This data is tied to your account and is not shared with other users.</p>
+devices. This data is tied to your account and is not shared with other users.
+Your profile photo, if you add one, is stored in <strong>Firebase Cloud
+Storage</strong>.</p>
+
+<h2>3a. Features you choose to use</h2>
+<p>Each of these is off until you use it, and each sends only what is described:</p>
+<ul>
+  <li><strong>Leaderboard (opt-in).</strong> If you join it, your display name,
+  profile photo, current streak and number of mastered words are visible to other
+  VocNote users. Leaving the leaderboard removes your entry.</li>
+  <li><strong>Push notifications (opt-in).</strong> If you allow them, we store a
+  device token (Firebase Cloud Messaging) with your account to tell you about new
+  vocabulary sets or replies to your feedback. Signing out removes this device’s
+  token. The daily study reminder is scheduled on your device and sends nothing.</li>
+  <li><strong>Pictures on Google Drive.</strong> If you connect Google Drive, word
+  pictures are saved in the app’s private folder <em>in your own Drive</em>
+  (the <code>drive.appdata</code> permission, which cannot see any of your other
+  files). We do not receive a copy.</li>
+  <li><strong>Import from Google Sheets.</strong> The link you paste is used to
+  read that sheet through the Google Sheets API. Nothing is written back.</li>
+  <li><strong>Feedback and suggestions.</strong> Messages you send us, and
+  suggestions for vocabulary maps, are stored with your account identifier and
+  name so we can reply and, if you choose, credit you.</li>
+  <li><strong>Invite friends.</strong> To count an invitation once, we store which
+  account invited which, and a one-way hash of the invited account’s email address
+  (not the address itself).</li>
+</ul>
+<p>Apple Intelligence suggestions, pronunciation and handwriting practice run
+<strong>on your device</strong>; nothing you type into them is sent to us.
+Some content (such as Chinese stroke-order data) is downloaded from a public
+content network, which, like any website, sees your IP address.</p>
 
 <h2>4. Usage and analytics</h2>
 <p>We use <strong>Firebase Analytics</strong> (by Google) to understand how the
@@ -77,19 +110,34 @@ privacy-preserving <strong>SKAdNetwork</strong>. Buying <strong>VocNote
 Premium</strong> removes all ads.</p>
 
 <h2>7. Purchases</h2>
-<p>Purchases of VocNote Premium are processed by <strong>Apple</strong>. Payment
-is handled entirely by Apple — <strong>we never receive your card or payment
-details</strong>. We use <strong>RevenueCat</strong> to manage entitlements and
+<p>Purchases of VocNote Premium are processed by <strong>Apple</strong> (App
+Store) or <strong>Google</strong> (Google Play). Payment is handled entirely by
+them — <strong>we never receive your card or payment details</strong>. We use <strong>RevenueCat</strong> to manage entitlements and
 to let you restore your purchase. RevenueCat processes your purchase status, a
 purchase/customer identifier, device information, and — if you are signed in to
 VocNote Cloud — your account identifier and email, so your purchase can be linked
 to your account and restored on your devices.</p>
 
+<h2>7a. App integrity and updates</h2>
+<p>We use <strong>Firebase App Check</strong> (Apple DeviceCheck / Google Play
+Integrity) to confirm requests come from a genuine copy of the app, and
+<strong>Firebase Remote Config</strong> to tell you when an update is required.
+These process device and app information, not your notebook.</p>
+
+<h2 id="social">7b. VocNote on social media</h2>
+<p>We publish short videos about English words to VocNote’s own accounts on
+YouTube, Facebook, Instagram and TikTok. To do this, our publishing tool connects
+to those platforms with our own account’s permission (for example, a Facebook
+Page access token) and only uploads videos we made. <strong>It does not read,
+collect or store any information about people who watch, like, comment on or
+follow those accounts.</strong> What you do on those platforms is covered by
+their own privacy policies.</p>
+
 <h2>8. Third-party services</h2>
 <p>The services above are provided by third parties who process data on our
 behalf. Their own privacy policies apply:</p>
 <ul>
-  <li>Google (AdMob &amp; Firebase): <a href="https://policies.google.com/privacy">policies.google.com/privacy</a></li>
+  <li>Google (AdMob, Firebase, Google Drive, Google Sheets, Google Play): <a href="https://policies.google.com/privacy">policies.google.com/privacy</a></li>
   <li>RevenueCat: <a href="https://www.revenuecat.com/privacy">revenuecat.com/privacy</a></li>
   <li>Apple: <a href="https://www.apple.com/legal/privacy/">apple.com/legal/privacy</a></li>
 </ul>
@@ -99,19 +147,31 @@ behalf. Their own privacy policies apply:</p>
 with anyone except the service providers listed above, strictly to operate the
 app, or where required by law.</p>
 
-<h2>10. Data retention and deletion</h2>
+<h2 id="delete-data">10. Data retention and deletion</h2>
 <ul>
   <li><strong>On-device data:</strong> removed when you delete the app from your device.</li>
   <li><strong>Cloud account and synced data:</strong> kept while your account
   exists. You can delete your account and all of its cloud data at any time from
   inside the app — open Settings and tap <strong>Delete account</strong> at the
-  foot of your profile. You may also email us and we will delete it for you.</li>
+  foot of your profile. This deletes your synced notebook, profile photo,
+  leaderboard entry, device tokens, feedback, suggestions and invitation records.
+  The only thing kept is the one-way email hash described above, so an address
+  cannot claim the invitation reward twice; it cannot be turned back into your
+  email.</li>
+  <li><strong>Pictures on Google Drive</strong> stay in your Drive until you
+  remove them there (Google Drive › Settings › Manage apps › VocNote › Delete
+  hidden app data).</li>
+  <li><strong>By email:</strong> write to
+  <a href="mailto:lucat.developer@gmail.com">lucat.developer@gmail.com</a> from
+  the address on your account and we will delete your account and data within
+  30 days.</li>
 </ul>
 
 <h2>11. Your choices</h2>
 <ul>
   <li>Use the app without creating an account.</li>
   <li>Turn crash reporting on or off in Settings.</li>
+  <li>Join or leave the leaderboard, and allow or refuse notifications.</li>
   <li>Remove all ads by purchasing VocNote Premium.</li>
   <li>Export your data at any time (JSON/CSV).</li>
 </ul>
